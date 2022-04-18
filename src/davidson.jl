@@ -100,7 +100,7 @@ function davidson_method(
 
             append!(V, r)
 
-            ## orthonormalize
+            ## orthonormalize correction vector against current basis
             orthonormalize!(V)
             append!(HV, H*V[:, end])
 

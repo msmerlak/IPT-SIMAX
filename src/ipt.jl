@@ -3,8 +3,9 @@ using NLsolve, SpeedMapping
 using ElasticArrays
 
 include("cuda-utils.jl")
+include("acx.jl")
 
-function eigs_ipt(H::AbstractMatrix; i = 1, acceleration = :anderson, memory = 10, tol = 1e-12)
+function eigs_ipt(H::AbstractMatrix; i = 1, acceleration = false, memory = 10, tol = 1e-12)
 
     # Epstein-Nesbet partitioning
     H0 = Array(diag(H))
@@ -43,14 +44,23 @@ end
 function ipt(M; 
     pairs = size(M, 1), 
     tol = 1e-10, 
-    acceleration = true,
-    save_residuals = false
+    acceleration = :acx,
+    save_residuals = true,
+    initial_condition = nothing,
+    acceleration_kwargs...
     )
-    T = eltype(M)
     N = size(M, 1)
     #M = M[sortperm(diag(M)), sortperm(diag(M))]
 
-    initial = typeof(M)(I, N, pairs)
+    if initial_condition == nothing
+        if issymmetric(M)
+            initial_condition = Matrix{Float64}(I, N, pairs)
+        else
+            initial_condition = Matrix{ComplexF64}(I, N, pairs) 
+            initial_condition .+= 1e-3im 
+        end
+    end
+
 
     Δ = M - Diagonal(M)
     D = diag(M)
@@ -64,49 +74,26 @@ function ipt(M;
         Y[diagind(Y)] .= 1.
     end
 
-    if T <: Real && acceleration
 
-        sol = speedmapping(initial; m! = F!, store_info = save_residuals, tol = tol)
-        @assert sol.converged "Fixed-point iteration did not converge!"
-        vectors, values = sol.minimizer, D[1:pairs] + diag(Δ*sol.minimizer)
+    if acceleration == :acx
 
-        if save_residuals
-            states = sol.info.x
-            residuals = [norm(states[i] - states[i-1], Inf) for i in 2:length(states)]
-        else
-            residuals = nothing
-        end
+        sol = acx(F!, initial_condition; acceleration_kwargs...)
+        return (
+            vectors = sol.solution, 
+            values = D[1:pairs] + diag(Δ*sol.solution), 
+            errors = sol.errors,
+            matvecs = sol.f_calls
+            )
+            
+    elseif acceleration == :anderson
 
-        return (vectors = vectors, values = values, errors = residuals)
-
-    else
-
-        if !issymmetric(M) 
-            initial .+= 1e-3im 
-        end
-
-        current = similar(initial)
-        last = copy(current)
-
-        sol = ElasticMatrix(zeros(ComplexF64, N, 0))
-
-
-        while true
-
-            F!(current, last)
-
-            residuals = vec(mapslices(norm, current - last; dims = 1))
-            converged = residuals .< tol
-
-            if any(converged)
-                append!(sol, current[:, converged])
-                all(converged) && break
-                current = current[:, .!converged]
-            end
-            last = copy(current)
-        end
-        return (vectors = sol, values = (M*sol./sol)[1, :], errors = nothing)
-    end
-
+            sol = NLsolve.fixedpoint(F!, initial_condition; method = :anderson, ftol = tol, m = memory, store_trace = save_residuals, acceleration_kwargs...)
+    
+            return (
+                vectors = sol.zero, 
+                values = D[1:pairs] + diag(Δ*sol.zero), 
+                errors = save_residuals ? [sol.trace[i].fnorm for i in 1:sol.iterations] : nothing
+                )
         
+    end
 end
