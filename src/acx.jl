@@ -5,7 +5,7 @@ https://arxiv.org/pdf/2104.04974.pdf
 See https://github.com/NicolasL-S/SpeedMapping.jl for the author's version, currently restricted to real maps.
 """
 
-using LinearAlgebra
+import LinearAlgebra:dot, norm
 
 function acx(F!::Function, X₀; orders = [3, 2], tol = 1e-10, maxiters = 1000)
 
@@ -36,7 +36,7 @@ function acx(F!::Function, X₀; orders = [3, 2], tol = 1e-10, maxiters = 1000)
 
         if p == 2
             
-            σ = abs(Δ² ⋅ Δ¹)/abs(Δ² ⋅ Δ²)
+            σ = abs(dot(Δ², Δ¹))/abs(dot(Δ², Δ²))
             X = Δ⁰ + 2σ * Δ¹ + σ^2 * Δ²
 
         elseif p == 3 
@@ -44,7 +44,7 @@ function acx(F!::Function, X₀; orders = [3, 2], tol = 1e-10, maxiters = 1000)
             F!(F³, F²)
             Δ³ = F³ - 3F² + 3F¹ - X
 
-            σ = abs(Δ³ ⋅ Δ²)/abs(Δ³ ⋅ Δ³) 
+            σ = abs(dot(Δ³, Δ²))/abs(dot(Δ³, Δ³)) 
             X = Δ⁰ + 3σ*Δ¹ + 3σ^2*Δ² + σ^3*Δ³
         end
 

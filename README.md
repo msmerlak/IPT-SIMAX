@@ -1,20 +1,19 @@
-# IPT
+# Iterative Perturbation Theory
 
-This code base is using the Julia Language and [DrWatson](https://juliadynamics.github.io/DrWatson.jl/stable/)
-to make a reproducible scientific project named
-> IPT
+Iterative Perturbation Theory (IPT) is eigenvalue algorithm inspired from Rayleigh-Schrödinger perturbation theory and based on fixed-point iteration. 
 
-To (locally) reproduce this project, do the following:
+IPT has some unique features: 
 
-0. Download this code base. Notice that raw data are typically not included in the
-   git-history and may need to be downloaded independently.
-1. Open a Julia console and do:
-   ```
-   julia> using Pkg
-   julia> Pkg.add("DrWatson") # install globally, for using `quickactivate`
-   julia> Pkg.activate("path/to/this/project")
-   julia> Pkg.instantiate()
-   ```
+- IPT computes any desired number of eigenvalues, from just one to all of them, with the same iterative algorithm. This is contrast with standard eigenvalue methods, which are either 'iterative' (suitable for a small number of eigenvalues) or 'direct' (used to compute the full spectrum). 
 
-This will install all necessary packages for you to be able to run the scripts and
-everything should work out of the box, including correctly finding local paths.
+- To compute k eigenvectors of an N x N matrix M, the main computational step of IPT is the product of M with a dense N x k matrix. This operation is parallelizable and benefits from any sparsity of M, including when k = N (i.e. when all eigenvectors are requested). This is in contrast with usual 'direct' methods which parallelize poorly and break sparsity.
+
+- Unlike classical 'iterative' algorithms such as Krylov-Schur, LOBPCG, Generalized Davidson Jacobi-Davidson, etc., IPT is not based on the Rayleigh-Ritz method (external diagonalization in a subspace). IPT is fully self-contained. 
+
+- IPT is straightforward: it consists of fixing the fixed points of a simple, explicit quadratic map in matrix space. In particular, any fixed-point method (Picard iteration, Anderson acceleration, etc.) can be used out-of-the-box. In the present implementation we use a custom implementation Lepage-Saucier's [Alternating Cyclic Extrapolation](https://arxiv.org/abs/2104.04974) fixed-point acceleration algorithm. 
+
+- IPT makes no distinction between symmetric and non-symmetric problems. 
+
+- IPT is not strictly a numerical method: like Rayleigh-Schrödinger perturbation theory, it can also be used to compute analytical approximations of eigenvectors, including in infinite dimensions. 
+
+However, IPT also has a major limitation: its convergence is only guaranteed for near-diagonal matrices with well-separated diagonal elements.
