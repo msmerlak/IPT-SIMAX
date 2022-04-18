@@ -56,8 +56,7 @@ function ipt(M;
         if issymmetric(M)
             initial_condition = Matrix{Float64}(I, N, pairs)
         else
-            initial_condition = Matrix{ComplexF64}(I, N, pairs) 
-            initial_condition .+= 1e-3im 
+            initial_condition = Matrix{ComplexF64}(I, N, pairs) .+ 1e-3im 
         end
     end
 
@@ -84,7 +83,7 @@ function ipt(M;
             errors = sol.errors,
             matvecs = sol.f_calls
             )
-            
+
     elseif acceleration == :anderson
 
             sol = NLsolve.fixedpoint(F!, initial_condition; method = :anderson, ftol = tol, m = memory, store_trace = save_residuals, acceleration_kwargs...)
