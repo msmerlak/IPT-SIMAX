@@ -1,48 +1,30 @@
-include("linalg.jl")
+using LinearAlgebra, LinearMaps
+using IterativeSolvers: bicgstabl!
 
-using IterativeSolvers
+import Base:*
+*(L::LinearMap, X::AbstractMatrix) = mapslices(L, X; dims = 1)
+
 using ElasticArrays
-using Preconditioners
-using LinearMaps
 
-mutable struct DavidsonPreconditioner <: Preconditioners.AbstractPreconditioner
-    diagonal::Vector{Float64}
-    value::Float64
-end
-
-function ldiv!(P::DavidsonPreconditioner, x::AbstractArray)
-    x ./= P.diagonal .- P.value
-end
-function ldiv!(y::AbstractArray, P::DavidsonPreconditioner, x::AbstractArray)
-    y .= x./(P.diagonal .- P.value)
-end
-
-mutable struct JDPreconditioner <: Preconditioners.AbstractPreconditioner
-    diagonal::Vector{Float64}
-    value::Float64
-    vector::Vector{Float64}
-end
-
-function ldiv!(P::JDPreconditioner, x::AbstractVector)
-    orthogonalize!(x, P.vector)
-    x ./= P.diagonal - P.value
-    orthogonalize!(x, P.vector)
-end
-
+include("linalg.jl")
+include("preconditioning.jl")
 
 function davidson_method(
-    H::Hermitian, 
+    H::Union{AbstractMatrix, LinearMap},
     which = :smallest;
     method = :davidson,
     search_space = nothing, 
     max_dimension = 50,
+    diagonal = nothing,
     tol = 1e-12)
 
     N = size(H,1)
     if search_space == nothing
-        V = ElasticMatrix(Matrix{Float64}(I, N, 2))
-        HV = ElasticMatrix(H*V)
+        V = ElasticMatrix(Matrix{eltype(H)}(I, N, 10) .+ 1e-3rand(eltype(H), N, 10))
+    else
+        V = ElasticMatrix(search_space)
     end
+    HV = ElasticMatrix(H*V)
 
     k = size(V, 2)
     R = Ritz(NaN, Vector{Float64}(undef, N))
@@ -50,34 +32,39 @@ function davidson_method(
     r = fill(NaN, N)
     errors = Float64[]
 
-    if method == :davidson || method == :RQI
-        P = DavidsonPreconditioner(diag(H), NaN)
-    elseif method == :JD
-        P = JDPreconditioner(diag(H), NaN, fill(NaN, N))
-    end
+    # if method == :davidson || method == :RQI
+    #     P = DavidsonPreconditioner(diag(H), NaN)
+    # elseif method == :JD
+    #     P = JDPreconditioner(diag(H), NaN, fill(NaN, N))
+    # end
 
-    D = diag(H)
+    D = diagonal == nothing ? diag(H) : diagonal
 
+    matvecs = 0
     while true
 
         while size(V, 2) < max_dimension
 
             ## diagonalize in subspace V
             rayleigh_ritz!(R, HV, V, which)
+
             ## compute residual vector r = Hx - θx
             mul!(r, H, R.vector);
+            matvecs += 1
+            
             axpy!(-R.value, R.vector, r); 
 
             ϵ = norm(r, Inf)
             push!(errors, ϵ)
 
-            ϵ < tol && return (vector = R.vector, value = R.value, errors = errors)
+            ϵ < tol && return (vector = R.vector, value = R.value, trace = errors, matvecs = matvecs)
 
             ## expand subspace
             if method == :davidson
-                P.value = R.value
-                ldiv!(P, r)
-                #t = r./(D .- R.value)
+                #P.value = R.value
+                @show(R.value)
+                r ./= D .- R.value
+
             elseif method == :olsen
 
                 a = R.vector ./ (D .- R.value)
@@ -100,38 +87,27 @@ function davidson_method(
 
             append!(V, r)
 
+
             ## orthonormalize correction vector against current basis
-            orthonormalize!(V)
+            orthonorm!(V)
             append!(HV, H*V[:, end])
+            if all(V[:, end] .≈ 0.) 
+                println("linear dependence: restarting")
+                break 
+            end
 
         end
 
         ## restart
-        println("restarting")
+        println("max size: restarting")
 
         if which == :largest
-            V = V*eigen(Hermitian(V'*HV)).vectors[:, 1:k]
+            V = ElasticMatrix(V*eigen(Hermitian(V'*HV)).vectors[:, 1:k])
         else
-            V = V*eigen(Hermitian(V'*HV)).vectors[:, end-(k-1):end]
+            V = ElasticMatrix(V*eigen(Hermitian(V'*HV)).vectors[:, end-(k-1):end])
         end
-        HV = H * V
+        HV = ElasticMatrix(H * V)
     end
 
 end
 
-
-function JD_map!(y, A, θ, x)
-    ## y = (I - xx')(A - θI)(I - xx')
-    orthogonalize!(y, x)
-    mul!(y, A, x)
-    axpy!(-θ, x, y)
-    orthogonalize!(y, x)
-end
-
-
-function JD_correction(H, θ, x)
-    r = H*x - θ*x
-    @show r
-    t = ([H - θ*I x; x' 0.]\[-(I - x*x')*r; 0.])
-    @show (I - x*x')*(H - θ*I)*(I - x*x')*t
-end

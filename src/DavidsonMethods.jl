@@ -1,10 +1,11 @@
-module DavidsonMethods
+# module DavidsonMethods
 
-export davidson
+# export davidson_method
 
-using MKL
+using MKL, MKLSparse
 
+include("preconditioning.jl")
 include("linalg.jl")
 include("davidson.jl")
 
-end
+# end

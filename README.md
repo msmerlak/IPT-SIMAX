@@ -2,6 +2,14 @@
 
 Iterative Perturbation Theory (IPT) is eigenvalue algorithm inspired from Rayleigh-Schrödinger perturbation theory and based on fixed-point iteration. 
 
+## Usage
+
+```
+(eigenvectors, eigenvalues, errors) = ipt(matrix, number_of_eigenpairs)
+```
+
+## Background
+
 IPT has some unique features: 
 
 - IPT computes any desired number of eigenvalues, from just one to all of them, with the same iterative algorithm. This is contrast with standard eigenvalue methods, which are either 'iterative' (suitable for a small number of eigenvalues) or 'direct' (used to compute the full spectrum). 

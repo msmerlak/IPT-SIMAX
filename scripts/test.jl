@@ -1,18 +1,20 @@
-using DrWatson
-includet(srcdir("ipt.jl"))
-includet(srcdir("davidson.jl"))
-includet(srcdir("lobpcg.jl"))
+using DrWatson, Revise
+includet(srcdir("IterativePerturbationTheory.jl"))
+includet(srcdir("DavidsonMethods.jl"))
 
-using SparseArrays
-using KrylovKit
-using BenchmarkTools
-using JacobiDavidson
 
+using LinearAlgebra, SparseArrays
+using KrylovKit: eigsolve
+using IterativeSolvers: lobpcg
+using DFTK: LOBPCG
+using CPUTime
+
+const TOL = 1e-10
 
 using Plots; gr(dpi = 500)
 
-N = 10_000
-η = .5
+N = 1000
+η = .1
 M = spdiagm(
     0 => 1:N,
     1 => fill(η, N - 1),
@@ -21,7 +23,8 @@ M = spdiagm(
 p = 1
 
 
-@btime ipt(M; acceleration = :acx, pairs = 1, tol = 1e-10).errors
+
+@CPUtime IterativePerturbationTheory.ipt(M, 1; acceleration = :acx, tol = TOL).trace
 
 @btime davidson_method(H; method = :davidson).value
 
