@@ -8,7 +8,7 @@ We introduce a novel eigenvalue algorithm for near-diagonal matrices inspired by
 
 Diagonalization of a near-diagonal matrix of the matrix $M = \textrm{diag}(1,\cdots, n) + 10^{-2} \textrm{rand}(n, n)$:
 
-![](papers/SIMAX/resubmission/plots/timings.png?raw=true)
+![](timings.png)
 
 
 ## Reference
