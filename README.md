@@ -12,4 +12,6 @@ Diagonalization of a near-diagonal matrix of the matrix $M = \textrm{diag}(1,\cd
 
 
 ## Reference
-Kenmoe, Kriemann, Smerlak, Zadorin, _A fast iterative algorithm for near-diagonal eigenvalue problems_, [arXiv:2012.14702](https://arxiv.org/abs/2012.14702)
+- Paper: Kenmoe, Kriemann, Smerlak, Zadorin, _A fast iterative algorithm for near-diagonal eigenvalue problems_, [arXiv:2012.14702](https://arxiv.org/abs/2012.14702)
+
+- Julia package: [IterativePerturbationTheory.jl](https://github.com/msmerlak/IterativePerturbationTheory.jl)
