@@ -1,72 +1,43 @@
 using DrWatson
 @quickactivate
 
-using LinearAlgebra, SparseArrays, DataFrames, Arrow
-
-include(srcdir("benchmark.jl"))
-
-processors = Sys.cpu_info()
-system = "$(BLAS.get_num_threads()) x $(processors[1].model) with $(BLAS.get_config().loaded_libs[1])"
-
-println(system)
-
-den(N, η) = diagm(1:N) + η * rand(N, N)
-spar(N, η, density) = spdiagm(1:N) + η * sprand(N, N, density)
-morgan(N) = spdiagm(0 => 1:N, 1 => fill(0.5, N - 1), -1 => fill(0.5, N - 1))
-
-results = DataFrame(
-    N=[],
-    η = [],
-    symmetric=[],
-    nev=[],
-    density=[],
-    method=[],
-    eigenvalue=[],
-    residuals=[],
-    iterations = [],
-    matvecs=[],
-    time=[],
-)
-
-N = 5000
-
-A = morgan(N)
-for nev in Int[1, 10, N]
-    params = (N = N, symmetric = true, η = missing, nev = nev)
-    benchmark!(results, A, params)
-    println(results)
-end
-Arrow.write(datadir("CPU", "morgan"), results)
+using IterativePerturbationTheory, LinearAlgebra
+using DataFrames, Arrow
+using BenchmarkTools
 
 
 results = DataFrame(
-    N=[],
-    η = [],
-    symmetric=[],
-    nev=[],
-    density=[],
-    method=[],
-    eigenvalue=[],
-    residuals=[],
-    iterations = [],
-    matvecs=[],
-    time=[],
+    N = [],
+    symm = [],
+    t_matmul = [],
+    time_eigen = [],
+    time_ipt = [],
+    time_ipt_acx = [],
 )
 
-for ν in 8:13, symmetric in [true, false], dense in [true, false], η in [1e-3, 1e-2, 1e-1, 1.]
+for n in 5:13, symm in (true, false)
 
-    N = 2^ν
-
-    A = dense ? den(N, η) : spar(N, η, 10 / N)
-    if symmetric
-        A = (A + A') / 2
+    N = 2^n
+    λ = .01
+    M = diagm(1:N) + λ*rand(N, N)
+    if symm
+        M = (M + M')/2 
     end
 
-    for nev in Int[1, 10, N]
-        params = (N = N, symmetric = symmetric, η = η, nev = nev)
-        benchmark!(results, A, params)
-        println(results)
-    end
+    A = copy(M)
+    t_matmul = @belapsed mul!($A, $M, $M);
 
+    t_eigen = @belapsed eigen($M);
+    t_ipt = @belapsed ipt($M, $N; acceleration = :none);
+    t_ipt_acx = @belapsed ipt($M, $N; acceleration = :acx);
+
+    result = [N, symm, t_matmul, t_eigen, t_ipt, t_ipt_acx]
+
+    @show result
+    push!(results, result)
+
+    Arrow.write(datadir("CPU_T_vs_N"), results)
 end
-Arrow.write(datadir("CPU", "random"), results)
+
+
+

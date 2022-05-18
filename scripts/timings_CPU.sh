@@ -9,4 +9,4 @@
 #SBATCH --mail-type=ALL
 
 
-julia timings_CPU.jl > timings_CPU.log
+julia --threads auto timings_CPU.jl > timings_CPU.log
