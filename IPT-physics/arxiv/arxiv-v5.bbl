@@ -1,0 +1,529 @@
+%apsrev4-2.bst 2019-01-14 (MD) hand-edited version of apsrev4-1.bst
+%Control: key (0)
+%Control: author (72) initials jnrlst
+%Control: editor formatted (1) identically to author
+%Control: production of article title (-1) disabled
+%Control: page (0) single
+%Control: year (1) truncated
+%Control: production of eprint (0) enabled
+\begin{thebibliography}{55}%
+\makeatletter
+\providecommand \@ifxundefined [1]{%
+ \@ifx{#1\undefined}
+}%
+\providecommand \@ifnum [1]{%
+ \ifnum #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \@ifx [1]{%
+ \ifx #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \natexlab [1]{#1}%
+\providecommand \enquote  [1]{``#1''}%
+\providecommand \bibnamefont  [1]{#1}%
+\providecommand \bibfnamefont [1]{#1}%
+\providecommand \citenamefont [1]{#1}%
+\providecommand \href@noop [0]{\@secondoftwo}%
+\providecommand \href [0]{\begingroup \@sanitize@url \@href}%
+\providecommand \@href[1]{\@@startlink{#1}\@@href}%
+\providecommand \@@href[1]{\endgroup#1\@@endlink}%
+\providecommand \@sanitize@url [0]{\catcode `\\12\catcode `\$12\catcode
+  `\&12\catcode `\#12\catcode `\^12\catcode `\_12\catcode `\%12\relax}%
+\providecommand \@@startlink[1]{}%
+\providecommand \@@endlink[0]{}%
+\providecommand \url  [0]{\begingroup\@sanitize@url \@url }%
+\providecommand \@url [1]{\endgroup\@href {#1}{\urlprefix }}%
+\providecommand \urlprefix  [0]{URL }%
+\providecommand \Eprint [0]{\href }%
+\providecommand \doibase [0]{https://doi.org/}%
+\providecommand \selectlanguage [0]{\@gobble}%
+\providecommand \bibinfo  [0]{\@secondoftwo}%
+\providecommand \bibfield  [0]{\@secondoftwo}%
+\providecommand \translation [1]{[#1]}%
+\providecommand \BibitemOpen [0]{}%
+\providecommand \bibitemStop [0]{}%
+\providecommand \bibitemNoStop [0]{.\EOS\space}%
+\providecommand \EOS [0]{\spacefactor3000\relax}%
+\providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
+\let\auto@bib@innerbib\@empty
+%</preamble>
+\bibitem [{\citenamefont
+  {Dyson}(1952)}]{dysonDivergencePerturbationTheory1952}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {F.~J.}\ \bibnamefont
+  {Dyson}},\ }\href {https://doi.org/10.1103/PhysRev.85.631} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {85}},\ \bibinfo {pages} {631} (\bibinfo {year} {1952})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Simon}(1982)}]{simon1982large}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {B.}~\bibnamefont
+  {Simon}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {International Journal of Quantum Chemistry}\ }\textbf {\bibinfo {volume}
+  {21}},\ \bibinfo {pages} {3} (\bibinfo {year} {1982})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {{\v C}{\'i}{\v z}ek}\ and\ \citenamefont
+  {Vrscay}(1982)}]{cizekLargeOrderPerturbation1982}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {{\v
+  C}{\'i}{\v z}ek}}\ and\ \bibinfo {author} {\bibfnamefont {E.~R.}\
+  \bibnamefont {Vrscay}},\ }\href {https://doi.org/10.1002/qua.560210104}
+  {\bibfield  {journal} {\bibinfo  {journal} {Int. J. Quantum Chem.}\ }\textbf
+  {\bibinfo {volume} {21}},\ \bibinfo {pages} {27} (\bibinfo {year}
+  {1982})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Roth}\ and\ \citenamefont
+  {Langhammer}(2010)}]{rothPaderesummedHighorderPerturbation2010}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
+  {Roth}}\ and\ \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Langhammer}},\ }\href {https://doi.org/10.1016/j.physletb.2009.12.046}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Lett. B}\ }\textbf
+  {\bibinfo {volume} {683}},\ \bibinfo {pages} {272} (\bibinfo {year}
+  {2010})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Christiansen}\ \emph {et~al.}(1996)\citenamefont
+  {Christiansen}, \citenamefont {Olsen}, \citenamefont {J{\o}rgensen},
+  \citenamefont {Koch},\ and\ \citenamefont
+  {Malmqvist}}]{christiansen1996inherent}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {O.}~\bibnamefont
+  {Christiansen}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Olsen}},
+  \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {J{\o}rgensen}}, \bibinfo
+  {author} {\bibfnamefont {H.}~\bibnamefont {Koch}},\ and\ \bibinfo {author}
+  {\bibfnamefont {P.-{\AA}.}\ \bibnamefont {Malmqvist}},\ }\href@noop {}
+  {\bibfield  {journal} {\bibinfo  {journal} {Chem. Phys. Lett.}\ }\textbf
+  {\bibinfo {volume} {261}},\ \bibinfo {pages} {369} (\bibinfo {year}
+  {1996})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont
+  {Rivasseau}(1991)}]{rivasseauPerturbativeConstructiveRenormalization1991}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
+  {Rivasseau}},\ }\href@noop {} {\emph {\bibinfo {title} {From {{Perturbative}}
+  to {{Constructive Renormalization}}}}},\ \bibinfo {edition} {2nd}\ ed.\
+  (\bibinfo  {publisher} {{Princeton University Press}},\ \bibinfo {year}
+  {1991})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Guillou}\ and\ \citenamefont
+  {{Zinn-Justin}}(1990)}]{guillouLargeOrderBehaviourPerturbation1990}%
+  \BibitemOpen
+  \bibinfo {editor} {\bibfnamefont {J.~C.~L.}\ \bibnamefont {Guillou}}\ and\
+  \bibinfo {editor} {\bibfnamefont {J.}~\bibnamefont {{Zinn-Justin}}},\ eds.,\
+  \href@noop {} {\emph {\bibinfo {title} {Large-{{Order Behaviour}} of
+  {{Perturbation Theory}}}}}\ (\bibinfo  {publisher} {{North Holland}},\
+  \bibinfo {year} {1990})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Janke}\ and\ \citenamefont
+  {Kleinert}(2007)}]{jankeResummationDivergentPerturbation2007}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {W.}~\bibnamefont
+  {Janke}}\ and\ \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Kleinert}},\ }\href@noop {} {\emph {\bibinfo {title} {Resummation of
+  {{Divergent Perturbation Series}}: {{Introduction}} to {{Theory}} and
+  {{Guide}} to {{Practical Applications}}}}}\ (\bibinfo  {publisher} {{World
+  Scientific}},\ \bibinfo {year} {2007})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Caliceti}\ \emph {et~al.}(2007)\citenamefont
+  {Caliceti}, \citenamefont {{Meyer-Hermann}}, \citenamefont {Ribeca},
+  \citenamefont {Surzhykov},\ and\ \citenamefont
+  {Jentschura}}]{Calicetiusefulalgorithmsslowly2007}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Caliceti}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {{Meyer-Hermann}}}, \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont
+  {Ribeca}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Surzhykov}},\
+  and\ \bibinfo {author} {\bibfnamefont {U.~D.}\ \bibnamefont {Jentschura}},\
+  }\href {https://doi.org/10.1016/j.physrep.2007.03.003} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rep}\ }\textbf {\bibinfo {volume} {446}},\
+  \bibinfo {pages} {1} (\bibinfo {year} {2007})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont
+  {Weniger}(1989)}]{wenigerNonlinearSequenceTransformations1989}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.~J.}\ \bibnamefont
+  {Weniger}},\ }\href {https://doi.org/10.1016/0167-7977(89)90011-7} {\bibfield
+   {journal} {\bibinfo  {journal} {Comput. Phys. Rep.}\ }\textbf {\bibinfo
+  {volume} {10}},\ \bibinfo {pages} {189} (\bibinfo {year} {1989})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Loeffel}\ \emph {et~al.}(1969)\citenamefont
+  {Loeffel}, \citenamefont {Martin}, \citenamefont {Simon},\ and\ \citenamefont
+  {Wightman}}]{loeffelPadeApproximantsAnharmonic1969}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~J.}\ \bibnamefont
+  {Loeffel}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Martin}},
+  \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont {Simon}},\ and\ \bibinfo
+  {author} {\bibfnamefont {A.~S.}\ \bibnamefont {Wightman}},\ }\href
+  {https://doi.org/10.1016/0370-2693(69)90087-2} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Lett. B}\ }\textbf {\bibinfo {volume} {30}},\
+  \bibinfo {pages} {656} (\bibinfo {year} {1969})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Graffi}\ \emph {et~al.}(1970)\citenamefont {Graffi},
+  \citenamefont {Grecchi},\ and\ \citenamefont
+  {Simon}}]{graffiBorelSummabilityApplication1970}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Graffi}}, \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont {Grecchi}},\
+  and\ \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont {Simon}},\ }\href
+  {https://doi.org/10.1016/0370-2693(70)90564-2} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Lett. B}\ }\textbf {\bibinfo {volume} {32}},\
+  \bibinfo {pages} {631} (\bibinfo {year} {1970})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Mera}\ \emph {et~al.}(2015)\citenamefont {Mera},
+  \citenamefont {Pedersen},\ and\ \citenamefont
+  {Nikoli{\'c}}}]{mera2015nonperturbative}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Mera}}, \bibinfo {author} {\bibfnamefont {T.~G.}\ \bibnamefont {Pedersen}},\
+  and\ \bibinfo {author} {\bibfnamefont {B.~K.}\ \bibnamefont {Nikoli{\'c}}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\
+  }\textbf {\bibinfo {volume} {115}},\ \bibinfo {pages} {143001} (\bibinfo
+  {year} {2015})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Delabaere}\ \emph {et~al.}(2016)\citenamefont
+  {Delabaere}, \citenamefont {{Loday-Richaud}}, \citenamefont {Mitschi},\ and\
+  \citenamefont {Sauzin}}]{delabaereDivergentSeriesSummability2016}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Delabaere}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {{Loday-Richaud}}}, \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Mitschi}},\ and\ \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Sauzin}},\ }\href@noop {} {\emph {\bibinfo {title} {Divergent {{Series}},
+  {{Summability}} and {{Resurgence I}}-{{III}}}}},\ Lecture {{Notes}} in
+  {{Mathematics}}\ (\bibinfo  {publisher} {{Springer}},\ \bibinfo {year}
+  {2016})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Seznec}\ and\ \citenamefont
+  {Zinn-Justin}(1979)}]{seznec1979summation}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
+  {Seznec}}\ and\ \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Zinn-Justin}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {J. Math. Phys.}\ }\textbf {\bibinfo {volume} {20}},\ \bibinfo {pages} {1398}
+  (\bibinfo {year} {1979})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Kvaal}\ \emph {et~al.}(2011)\citenamefont {Kvaal},
+  \citenamefont {Jarlebring},\ and\ \citenamefont
+  {Michiels}}]{kvaal2011computing}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Kvaal}}, \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Jarlebring}},\
+  and\ \bibinfo {author} {\bibfnamefont {W.}~\bibnamefont {Michiels}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. A}\
+  }\textbf {\bibinfo {volume} {83}},\ \bibinfo {pages} {032505} (\bibinfo
+  {year} {2011})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Herbst}\ and\ \citenamefont
+  {Simon}(1978)}]{Herbstremarkableexampleseigenvalue1978}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.~W.}\ \bibnamefont
+  {Herbst}}\ and\ \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont {Simon}},\
+  }\href {https://doi.org/10.1016/0370-2693(78)90028-X} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Lett. B}\ }\textbf {\bibinfo {volume} {78}},\
+  \bibinfo {pages} {304} (\bibinfo {year} {1978})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {{Zinn-Justin}}\ and\ \citenamefont
+  {Jentschura}(2004)}]{ZinnJustinMultiinstantonsexactresults2004}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {{Zinn-Justin}}}\ and\ \bibinfo {author} {\bibfnamefont {U.~D.}\ \bibnamefont
+  {Jentschura}},\ }\href {https://doi.org/10.1016/j.aop.2004.04.004} {\bibfield
+   {journal} {\bibinfo  {journal} {Ann. Phys. (N. Y.)}\ }\textbf {\bibinfo
+  {volume} {313}},\ \bibinfo {pages} {197} (\bibinfo {year}
+  {2004})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Jentschura}\ and\ \citenamefont
+  {{Zinn-Justin}}(2004)}]{JentschuraInstantonsquantummechanics2004}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {U.~D.}\ \bibnamefont
+  {Jentschura}}\ and\ \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {{Zinn-Justin}}},\ }\href {https://doi.org/10.1016/j.physletb.2004.06.077}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Lett. B}\ }\textbf
+  {\bibinfo {volume} {596}},\ \bibinfo {pages} {138} (\bibinfo {year}
+  {2004})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Aniceto}\ \emph {et~al.}(2019)\citenamefont
+  {Aniceto}, \citenamefont {Ba{\c s}ar},\ and\ \citenamefont
+  {Schiappa}}]{Anicetoprimerresurgenttransseries2019}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
+  {Aniceto}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Ba{\c
+  s}ar}},\ and\ \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
+  {Schiappa}},\ }\href {https://doi.org/10.1016/j.physrep.2019.02.003}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rep.}\ }\textbf {\bibinfo
+  {volume} {809}},\ \bibinfo {pages} {1} (\bibinfo {year} {2019})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Surzhykov}\ \emph {et~al.}(2006)\citenamefont
+  {Surzhykov}, \citenamefont {Lubasch}, \citenamefont {{Zinn-Justin}},\ and\
+  \citenamefont {Jentschura}}]{SurzhykovQuantumdotpotentials2006}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Surzhykov}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Lubasch}},
+  \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {{Zinn-Justin}}},\ and\
+  \bibinfo {author} {\bibfnamefont {U.~D.}\ \bibnamefont {Jentschura}},\ }\href
+  {https://doi.org/10.1103/PhysRevB.74.205317} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume} {74}},\ \bibinfo
+  {pages} {205317} (\bibinfo {year} {2006})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Choe}\ \emph {et~al.}(2001)\citenamefont {Choe},
+  \citenamefont {Witek}, \citenamefont {Finley},\ and\ \citenamefont
+  {Hirao}}]{ChoeIdentifyingremovingintruder2001}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.-K.}\ \bibnamefont
+  {Choe}}, \bibinfo {author} {\bibfnamefont {H.~A.}\ \bibnamefont {Witek}},
+  \bibinfo {author} {\bibfnamefont {J.~P.}\ \bibnamefont {Finley}},\ and\
+  \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Hirao}},\ }\href
+  {https://doi.org/10.1063/1.1345510} {\bibfield  {journal} {\bibinfo
+  {journal} {J. Chem. Phys.}\ }\textbf {\bibinfo {volume} {114}},\ \bibinfo
+  {pages} {3913} (\bibinfo {year} {2001})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont
+  {Hirschfelder}(1963)}]{HirschfelderIterationVariationProcedures1963}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~O.}\ \bibnamefont
+  {Hirschfelder}},\ }\href {https://doi.org/10.1063/1.1734587} {\bibfield
+  {journal} {\bibinfo  {journal} {J. Chem. Phys.}\ }\textbf {\bibinfo {volume}
+  {39}},\ \bibinfo {pages} {2099} (\bibinfo {year} {1963})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Caswell}(1979)}]{caswell1979accurate}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {W.~E.}\ \bibnamefont
+  {Caswell}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Annals of Physics}\ }\textbf {\bibinfo {volume} {123}},\ \bibinfo {pages}
+  {153} (\bibinfo {year} {1979})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Schwartz}\ and\ \citenamefont
+  {Edwards}(1992)}]{schwartz1992nonlinear}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Schwartz}}\ and\ \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Edwards}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {EPL}\
+  }\textbf {\bibinfo {volume} {20}},\ \bibinfo {pages} {301} (\bibinfo {year}
+  {1992})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Shirokov}\ and\ \citenamefont
+  {Blinov}(1995)}]{shirokov1995superconvergent}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
+  {Shirokov}}\ and\ \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont
+  {Blinov}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {J.
+  Exp. Theor. Phys.}\ }\textbf {\bibinfo {volume} {80}},\ \bibinfo {pages} {3}
+  (\bibinfo {year} {1995})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont
+  {Scherer}(1995)}]{SchererSuperconvergentPerturbationMethod1995}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {W.}~\bibnamefont
+  {Scherer}},\ }\href {https://doi.org/10.1103/PhysRevLett.74.1495} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo
+  {volume} {74}},\ \bibinfo {pages} {1495} (\bibinfo {year}
+  {1995})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Szabados}\ and\ \citenamefont
+  {Surj{\'a}n}(1999)}]{SzabadosOptimizedpartitioningRayleigh1999}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {{\'A}.}~\bibnamefont
+  {Szabados}}\ and\ \bibinfo {author} {\bibfnamefont {P.~R.}\ \bibnamefont
+  {Surj{\'a}n}},\ }\href {https://doi.org/10.1016/S0009-2614(99)00647-8}
+  {\bibfield  {journal} {\bibinfo  {journal} {Chem. Phys. Lett.}\ }\textbf
+  {\bibinfo {volume} {308}},\ \bibinfo {pages} {303} (\bibinfo {year}
+  {1999})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Remez}\ and\ \citenamefont
+  {Goldstein}(2018)}]{remez2018divergent}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {B.}~\bibnamefont
+  {Remez}}\ and\ \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Goldstein}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys. Rev. D}\ }\textbf {\bibinfo {volume} {98}},\ \bibinfo {pages} {056017}
+  (\bibinfo {year} {2018})}\BibitemShut {NoStop}%
+\bibitem [{Note1()}]{Note1}%
+  \BibitemOpen
+  \bibinfo {note} {Stability here means that the eigenvalues remains isolated
+  and non-degenerate for small values of $\lambda $.}\BibitemShut {Stop}%
+\bibitem [{Note2()}]{Note2}%
+  \BibitemOpen
+  \bibinfo {note} {Choosing instead $\protect \mathcal {E} = E$ is the starting
+  point of Brillouin-Wigner perturbation theory, in which $E$ is computed
+  implicitly rather than explicitly.}\BibitemShut {Stop}%
+\bibitem [{\citenamefont {Adams}(1994)}]{adamsAlgebraicApproachSimple1994}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {B.~G.}\ \bibnamefont
+  {Adams}},\ }\href {https://doi.org/10.1007/978-3-642-57933-2} {\emph
+  {\bibinfo {title} {Algebraic {{Approach}} to {{Simple Quantum Systems}}:
+  {{With Applications}} to {{Perturbation Theory}}}}}\ (\bibinfo  {publisher}
+  {{Springer-Verlag}},\ \bibinfo {year} {1994})\BibitemShut {NoStop}%
+\bibitem [{Note3()}]{Note3}%
+  \BibitemOpen
+  \bibinfo {note} {In particular, to any finite perturbative order $k$, all
+  sums over unperturbed eigenstates are all finite sums.}\BibitemShut {Stop}%
+\bibitem [{\citenamefont {Kenmoe}\ \emph {et~al.}(2021)\citenamefont {Kenmoe},
+  \citenamefont {Kriemann}, \citenamefont {Smerlak},\ and\ \citenamefont
+  {Zadorin}}]{kenmoeFastIterativeAlgorithm2021}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Kenmoe}}, \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Kriemann}},
+  \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Smerlak}},\ and\ \bibinfo
+  {author} {\bibfnamefont {A.~S.}\ \bibnamefont {Zadorin}},\ }\href@noop {}
+  {\bibinfo {title} {A fast iterative algorithm for near-diagonal eigenvalue
+  problems}} (\bibinfo {year} {2021}),\ \Eprint
+  {https://arxiv.org/abs/2012.14702} {arXiv:2012.14702 [cs, math]} \BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Kato}(2013)}]{kato2013perturbation}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont
+  {Kato}},\ }\href@noop {} {\emph {\bibinfo {title} {Perturbation theory for
+  linear operators}}},\ Vol.\ \bibinfo {volume} {132}\ (\bibinfo  {publisher}
+  {Springer Science \& Business Media},\ \bibinfo {year} {2013})\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Feenberg}(1958)}]{feenberg1958analysis}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Feenberg}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Ann.
+  Phys. (N. Y.)}\ }\textbf {\bibinfo {volume} {3}},\ \bibinfo {pages} {292}
+  (\bibinfo {year} {1958})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Dietz}\ \emph {et~al.}(1993)\citenamefont {Dietz},
+  \citenamefont {Schmidt}, \citenamefont {Warken},\ and\ \citenamefont
+  {Hess}}]{dietz1993acceleration}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {Dietz}}, \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {Schmidt}},
+  \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Warken}},\ and\ \bibinfo
+  {author} {\bibfnamefont {B.}~\bibnamefont {Hess}},\ }\href@noop {} {\bibfield
+   {journal} {\bibinfo  {journal} {J. Phys. B}\ }\textbf {\bibinfo {volume}
+  {26}},\ \bibinfo {pages} {1885} (\bibinfo {year} {1993})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Schmidt}\ \emph {et~al.}(1993)\citenamefont
+  {Schmidt}, \citenamefont {Warken},\ and\ \citenamefont
+  {Handy}}]{schmidt1993feenberg}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Schmidt}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Warken}},\
+  and\ \bibinfo {author} {\bibfnamefont {N.~C.}\ \bibnamefont {Handy}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Chem. Phys.
+  Lett.}\ }\textbf {\bibinfo {volume} {211}},\ \bibinfo {pages} {272} (\bibinfo
+  {year} {1993})}\BibitemShut {NoStop}%
+\bibitem [{Note4()}]{Note4}%
+  \BibitemOpen
+  \bibinfo {note} {IPT never does: even with $\alpha =1$, $\psi ^{(k)}_\protect
+  \textrm {IPT}$ is a polynomial in $\lambda $ with $k$-dependent
+  coefficients.}\BibitemShut {Stop}%
+\bibitem [{\citenamefont {Surj{\'a}n}\ and\ \citenamefont
+  {Szabados}(2004{\natexlab{a}})}]{surjanAppendixStudiesPerturbation2004}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.~R.}\ \bibnamefont
+  {Surj{\'a}n}}\ and\ \bibinfo {author} {\bibfnamefont {{\'A}.}~\bibnamefont
+  {Szabados}},\ }in\ \href {https://doi.org/10.1007/978-94-017-0448-9_8} {\emph
+  {\bibinfo {booktitle} {Fundamental {{World}} of {{Quantum Chemistry}}: {{A
+  Tribute}} to the {{Memory}} of {{Per}}-{{Olov L\"owdin Volume III}}}}},\
+  \bibinfo {editor} {edited by\ \bibinfo {editor} {\bibfnamefont {E.~J.}\
+  \bibnamefont {Br{\"a}ndas}}\ and\ \bibinfo {editor} {\bibfnamefont {E.~S.}\
+  \bibnamefont {Kryachko}}}\ (\bibinfo  {publisher} {{Springer Netherlands}},\
+  \bibinfo {year} {2004})\ pp.\ \bibinfo {pages} {129--185}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Bender}\ and\ \citenamefont
+  {Wu}(1969)}]{benderAnharmonicOscillator1969}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.~M.}\ \bibnamefont
+  {Bender}}\ and\ \bibinfo {author} {\bibfnamefont {T.~T.}\ \bibnamefont
+  {Wu}},\ }\href {https://doi.org/10.1103/PhysRev.184.1231} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo {volume}
+  {184}},\ \bibinfo {pages} {1231} (\bibinfo {year} {1969})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Simon}\ and\ \citenamefont
+  {Dicke}(1970)}]{SimonCouplingconstantanalyticity1970}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {B.}~\bibnamefont
+  {Simon}}\ and\ \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Dicke}},\
+  }\href {https://doi.org/10.1016/0003-4916(70)90240-X} {\bibfield  {journal}
+  {\bibinfo  {journal} {Ann. Phys. (N. Y.)}\ }\textbf {\bibinfo {volume}
+  {58}},\ \bibinfo {pages} {76} (\bibinfo {year} {1970})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Surj{\'a}n}\ and\ \citenamefont
+  {Szabados}(2004{\natexlab{b}})}]{surjanConvergenceEnhancementPerturbation2004}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.~R.}\ \bibnamefont
+  {Surj{\'a}n}}\ and\ \bibinfo {author} {\bibfnamefont {{\'A}.}~\bibnamefont
+  {Szabados}},\ }\href {https://doi.org/10.1135/cccc20040105} {\bibfield
+  {journal} {\bibinfo  {journal} {Collect. Czech. Chem. Commun.}\ }\textbf
+  {\bibinfo {volume} {69}},\ \bibinfo {pages} {105} (\bibinfo {year}
+  {2004}{\natexlab{b}})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {{\v C}{\'i}{\v z}ek}\ and\ \citenamefont
+  {Paldus}(1977)}]{cizekAlgebraicApproachBound1977}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {{\v
+  C}{\'i}{\v z}ek}}\ and\ \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Paldus}},\ }\href {https://doi.org/10.1002/qua.560120510} {\bibfield
+  {journal} {\bibinfo  {journal} {Int. J. Quantum Chem.}\ }\textbf {\bibinfo
+  {volume} {12}},\ \bibinfo {pages} {875} (\bibinfo {year} {1977})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {{Le Guillou}}\ and\ \citenamefont
+  {{Zinn-justin}}(1990)}]{leguillouHydrogenAtomStrong1990}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~C.}\ \bibnamefont
+  {{Le Guillou}}}\ and\ \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {{Zinn-justin}}},\ }in\ \href
+  {https://doi.org/10.1016/B978-0-444-88597-5.50038-7} {\emph {\bibinfo
+  {booktitle} {Current {{Physics}}\textendash{{Sources}} and {{Comments}}}}},\
+  \bibinfo {series} {Large-{{Order Behaviour}} of {{Perturbation Theory}}},
+  Vol.~\bibinfo {volume} {7},\ \bibinfo {editor} {edited by\ \bibinfo {editor}
+  {\bibfnamefont {J.~C.}\ \bibnamefont {{Le Guillou}}}\ and\ \bibinfo {editor}
+  {\bibfnamefont {J.}~\bibnamefont {{Zinn-justin}}}}\ (\bibinfo  {publisher}
+  {{Elsevier}},\ \bibinfo {year} {1990})\ pp.\ \bibinfo {pages}
+  {259--286}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {{\v C}{\'{\i}}{\v z}ek}\ \emph
+  {et~al.}(2003)\citenamefont {{\v C}{\'{\i}}{\v z}ek}, \citenamefont
+  {Zamastil},\ and\ \citenamefont
+  {Sk{\'a}la}}]{cizekNewSummationTechnique2003}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {{\v
+  C}{\'{\i}}{\v z}ek}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Zamastil}},\ and\ \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {Sk{\'a}la}},\ }\href {https://doi.org/10.1063/1.1541119} {\bibfield
+  {journal} {\bibinfo  {journal} {J. Math. Phys.}\ }\textbf {\bibinfo {volume}
+  {44}},\ \bibinfo {pages} {962} (\bibinfo {year} {2003})}\BibitemShut
+  {NoStop}%
+\bibitem [{Note5()}]{Note5}%
+  \BibitemOpen
+  \bibinfo {note} {The RS series for the Zeeman has been called ``one of the
+  most difficult summable divergent series encountered in physics'' \cite
+  {cizekNewSummationTechnique2003}.}\BibitemShut {Stop}%
+\bibitem [{Note6()}]{Note6}%
+  \BibitemOpen
+  \bibinfo {note} {Aitken extrapolation of a sequence $s_n$ is $s_n'=(s_n
+  s_{n+2}-s_{n+1}^2)/(s_n +s_{n+2}-2s_{n+1})$.}\BibitemShut {Stop}%
+\bibitem [{\citenamefont {Serbyn}\ \emph {et~al.}(2013)\citenamefont {Serbyn},
+  \citenamefont {Papi{\'c}},\ and\ \citenamefont {Abanin}}]{serbyn2013local}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Serbyn}}, \bibinfo {author} {\bibfnamefont {Z.}~\bibnamefont {Papi{\'c}}},\
+  and\ \bibinfo {author} {\bibfnamefont {D.~A.}\ \bibnamefont {Abanin}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\
+  }\textbf {\bibinfo {volume} {111}},\ \bibinfo {pages} {127201} (\bibinfo
+  {year} {2013})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Gray}(2018)}]{gray2018quimb}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Gray}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {J. Open
+  Source Softw.}\ }\textbf {\bibinfo {volume} {3}},\ \bibinfo {pages} {819}
+  (\bibinfo {year} {2018})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Hernandez}\ \emph {et~al.}(2005)\citenamefont
+  {Hernandez}, \citenamefont {Roman},\ and\ \citenamefont
+  {Vidal}}]{hernandez2005slepc}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
+  {Hernandez}}, \bibinfo {author} {\bibfnamefont {J.~E.}\ \bibnamefont
+  {Roman}},\ and\ \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont {Vidal}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {ACM Trans. Math.
+  Softw.}\ }\textbf {\bibinfo {volume} {31}},\ \bibinfo {pages} {351} (\bibinfo
+  {year} {2005})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Zhang}\ \emph {et~al.}(2020)\citenamefont {Zhang},
+  \citenamefont {O'Donoghue},\ and\ \citenamefont {Boyd}}]{zhang2020globally}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Zhang}}, \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont {O'Donoghue}},\
+  and\ \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Boyd}},\ }\href@noop
+  {} {\bibfield  {journal} {\bibinfo  {journal} {SIAM J. Optim.}\ }\textbf
+  {\bibinfo {volume} {30}},\ \bibinfo {pages} {3170} (\bibinfo {year}
+  {2020})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Walker}\ and\ \citenamefont
+  {Ni}(2011)}]{walker2011anderson}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.~F.}\ \bibnamefont
+  {Walker}}\ and\ \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Ni}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {SIAM J. Numer.
+  Anal.}\ }\textbf {\bibinfo {volume} {49}},\ \bibinfo {pages} {1715} (\bibinfo
+  {year} {2011})}\BibitemShut {NoStop}%
+\bibitem [{Note7()}]{Note7}%
+  \BibitemOpen
+  \bibinfo {note} {IPT can also be applied to non-Hermitian problems, in which
+  case speed-up factors reach $100$ or more \cite
+  {kenmoeFastIterativeAlgorithm2021}.}\BibitemShut {Stop}%
+\bibitem [{\citenamefont {Luitz}\ \emph {et~al.}(2015)\citenamefont {Luitz},
+  \citenamefont {Laflorencie},\ and\ \citenamefont {Alet}}]{luitz2015many}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.~J.}\ \bibnamefont
+  {Luitz}}, \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Laflorencie}},\
+  and\ \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont {Alet}},\ }\href@noop
+  {} {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. B}\ }\textbf
+  {\bibinfo {volume} {91}},\ \bibinfo {pages} {081103} (\bibinfo {year}
+  {2015})}\BibitemShut {NoStop}%
+\end{thebibliography}%
