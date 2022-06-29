@@ -1,5 +1,4 @@
-##############
-include("../chemistry/fci.jl")
+include("fci.jl")
 
 H₂O = """
 O 0 0 0; 
