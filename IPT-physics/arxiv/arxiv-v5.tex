@@ -1,0 +1,214 @@
+\documentclass[aps,prl,reprint]{revtex4-2}
+%\documentclass[aps,prl,twocolumn,superscriptaddress]{revtex4}
+%\documentclass[aps,prl,twocolumn]{revtex4-2}
+%\documentclass[pre,amsmath,amssymb,superscriptaddress,showpacs,twocolumn]{revtex4-1}
+\usepackage{amsmath,amssymb,graphicx}
+%\input epsf
+\usepackage{amsbsy}
+\usepackage{latexsym}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{psfrag}
+\usepackage[normalem]{ulem}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{notes2bib}
+\usepackage{soul}
+\usepackage{changes}
+
+\usepackage{longtable}
+\usepackage[utf8]{inputenc} % usually not needed (loaded by default)
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+
+	\title{Perturbation theory without power series:\\ iterative construction of non-analytic operator spectra}
+
+	\author{Matteo Smerlak}
+
+	\affiliation{Max Planck Institute for Mathematics in the Sciences, Leipzig, Germany}
+
+	\begin{abstract}
+	It is well known that quantum-mechanical perturbation theory often give rise to divergent series that require proper resummation. Here I discuss simple ways in which these divergences can be avoided in the first place. Using the elementary technique of relaxed fixed-point iteration, I obtain convergent expressions for various challenging ground states wavefunctions, including quartic, sextic and octic anharmonic oscillators, the hydrogenic Zeeman problem, and the Herbst-Simon Hamiltonian (with finite energy but vanishing Rayleigh-Schr\"odinger coefficients), all at arbitarily strong coupling. These results challenge the notion that non-analytic functions of coupling constants are intrinsically ``non-perturbative''. A possible application to exact diagonalization is briefly discussed.
+	\end{abstract}%
+
+	\keywords{perturbation theory, eigenvalue problem}
+	\maketitle
+
+
+	\paragraph{Introduction.---} Dyson was the first to observe that, since quantum electrodynamics with a negative fine structure constant is unstable, the perturbative series in powers of $\alpha$ must diverge in the physical sector with $\alpha > 0$, no matter how small its numerical value \cite{dysonDivergencePerturbationTheory1952}. Unfortunately, such asymptotic series with zero radius of convergence are the rule rather than the exception: simple problems such as the one-dimensional quartic anharmonic oscillator or the hydrogen atom in an external field already give rise to perturbative series that diverge for any coupling strength \cite{simon1982large}. Similar issues arise in molecular \cite{cizekLargeOrderPerturbation1982} and nuclear \cite{rothPaderesummedHighorderPerturbation2010} physics, quantum chemistry \cite{christiansen1996inherent}, and field theory \cite{rivasseauPerturbativeConstructiveRenormalization1991}. %In short, there is a general need for a \emph{constructive} approach to perturbation theory   \cite{rivasseauPerturbativeConstructiveRenormalization1991}.
+
+	The usual strategy to deal with a divergent perturbative series is to attempt to \emph{resum} it, \emph{i.e.} to use its coefficients to construct a convergent expression in ways other than simple summation \cite{guillouLargeOrderBehaviourPerturbation1990,jankeResummationDivergentPerturbation2007, Calicetiusefulalgorithmsslowly2007}. Various procedures have been developed for this purpose, including sequence transformations \cite{wenigerNonlinearSequenceTransformations1989}, Padé approximants \cite{loeffelPadeApproximantsAnharmonic1969}, Borel-Laplace resummation \cite{graffiBorelSummabilityApplication1970, mera2015nonperturbative, delabaereDivergentSeriesSummability2016}, and order-dependent mappings \cite{seznec1979summation}. Applying these procedures in practice can be difficult. For starters, since the perturbative coefficients grow factorially or super-factorially, high-precision (or exact) arithmetics is usually required. Second, methods based on analytic continuations (\emph{e.g.} Borel resummation or order-dependent mappings) require \emph{a priori} knowledge of the singularity structure of the eigenvalues, which must obtained through semiclassical estimates \cite{guillouLargeOrderBehaviourPerturbation1990} or some other technique \cite{kvaal2011computing}, and can give rise to ambiguities \cite{delabaereDivergentSeriesSummability2016}.
+
+	Worse still, resummation is not always possible. Herbst and Simon exhibited an anharmonic oscillator with finite ground state energy $E(g)\sim e^{-d/g^2}$ (with $d>0$) but vanishing perturbative coefficients at all orders \cite{Herbstremarkableexampleseigenvalue1978}, meaning that perturbation theory contains \emph{no} information about the ground state. To make progress, Jentschura and Zinn-Justin leveraged semiclassical estimates to conjecture a modified Born-Sommerfeld quantization condition \cite{ZinnJustinMultiinstantonsexactresults2004,JentschuraInstantonsquantummechanics2004} which gives the energy as a resurgent expansion \cite{Anicetoprimerresurgenttransseries2019}. Combined with Borel-Padé resummation, this approach allows to compute $E(g)$ at small coupling values $g$ \cite{SurzhykovQuantumdotpotentials2006}. However---like other resummation procedures---the method does not by itself allow to construct the corresponding eigenvector.
+
+	The basic problem underlying the divergence of perturbative expansions is that a function $E(g)$ of a variable $g$ with a singularity at $g_*\in\mathbb{C}$---\emph{e.g.} ``intruder state'' \cite{ChoeIdentifyingremovingintruder2001}---cannot be expressed as a convergent powers series in $g$ outside a disk of convergence of radius $\vert g_* \vert$ (Abel's lemma); when such a singularity lies at $g=0$, a power series expansions can never converge. Resummation theory is an effort to bypass this obstruction by interpreting the perturbation series as the Taylor expansion of some member of a more general, yet sufficiently rigid, class of function of $g$: a rational function for Padé approximants, a resurgent function for Borel-Ecalle resummation, etc. A common view is that non-analytic contributions to the energy function $E(g)$ (\emph{e.g.} instantons $\sim e^{-d/g^2}$), being intrinsically ``non-perturbative'', can only be captured from the large order behavior of perturbation theory, if at all.
+
+	But there is more to perturbation theory than Taylor expansions in the theory's coupling constant $g$. First, given a Hamiltonian $H = F + g I$ (where $F$ stands for ``free'' and $I$ for ``interaction''), nothing dictates that we treat $F$ as the unperturbed Hamiltonian and $gI$ as the perturbation. When we use any another partitioning into $H = H_0 + \lambda H_1$ (with $H_0$ a spectral function of $F$, with the same eigenvectors), the Rayleigh-Schr\"odinger (RS) algorithm yields a solution which is a power series in $\lambda$, but not in $g$. Second, whether we use $F$ or some other $H_0$ as unperturbed Hamiltonian, assuming a power series ansatz is not necessarily the most straightforward approach to solving the perturbation equation. I discuss below an alternative formulation of perturbation theory, called ``iterative perturbation theory'' (IPT), that does not rely on this ansatz and is more computationally efficient.
+
+	These observations are elementary, but also empowering. In the following I show that convergent approximations of the ground state energy---and eigenvector---of even anharmonic oscillators, the Zeeman problem and the Herbst-Simon Hamiltonian can be constructed perturbatively, at any coupling strength and without the need for educated guesses, extraneous semiclassical estimates, ingenious resummation techniques, or knowledge of the nature and location of singular points in the complex $g$ plane.
+
+	Many authors have noted that the convergence of perturbation theory can be improved by using the freedom to repartition the Hamiltonian \cite{HirschfelderIterationVariationProcedures1963,caswell1979accurate, seznec1979summation, schwartz1992nonlinear, shirokov1995superconvergent, SchererSuperconvergentPerturbationMethod1995, SzabadosOptimizedpartitioningRayleigh1999}. However, the large-order behavior of these optimized schemes has rarely been analyzed. To my knowledge, the resummation-free construction of a non-trivial quantum-mechanical ground state at arbitrarily high coupling strength with these methods has not been reported (with the exception of a zero-dimensional model \cite{remez2018divergent}). More importantly---as I hope to convince the reader---none of these optimized perturbation methods is as elementary as the relaxed iterative scheme proposed here.
+
+	       \begin{figure}[t!]
+	\hspace*{-1.1cm}
+	\includegraphics[width = \columnwidth]{quartic.pdf}
+	\caption{Ground state energy of the quartic oscillator computed with IPT ($\alpha = 1/2$) under EN partitioning \eqref{EN} (continuous lines) compared to exact diagonalization in a basis set with $5\cdot 10^4$ harmonic oscillator states (dashed lines), for increasingly large coupling constants $g$. Eigenvectors and eigenvalues both converge (albeit slowly) without the need for any resummation procedure.
+	}
+	\label{fig:quartic}
+	\end{figure}
+
+
+    \paragraph{Eigenvalue perturbation theory.---}
+	Consider a Hamiltonian of the form $H = H_0  +  \lambda H_1 $ where $H_0$ has a known spectrum and $H_1$ is a perturbation. (The method also applies to non-Hermitian problems, but we restrict to Hamiltonian operators here for simplicity). Here $\lambda$ is a perturbation parameter which we will eventually set to $1$. We focus on an isolated, non-degenerate, stable \footnote{Stability here means that the eigenvalues remains isolated and non-degenerate for small values of $\lambda$.} eigenvalue $E_0$ with corresponding eigenvector $\psi_0$ and eigenprojection $P_0$. We seek an eigenvector $\psi$ of $H$ with eigenvalue $E$ and $\langle \psi_0\vert \psi\rangle = 1$. Under this normalization condition, the eigenvalue equation $H \psi = E\psi$ is equivalent to
+	\begin{equation}
+	   \quad \psi = \psi_0 +  \lambda R_0(\mathcal{E})( H_1  + \mathcal{E}-E)\psi,\nonumber
+	\end{equation}
+	where $R_0(\mathcal{E}) = (I-P_0)(\mathcal{E} - H_0)^{-1}(I-P_0)$ is the reduced resolvent. In the following we focus on the choice $\mathcal{E} = E_0 = E - \langle \psi_0 \vert H_1 \psi\rangle$, which turns the perturbation equation into the quadratic equation \footnote{Choosing instead $\mathcal{E} = E$ is the starting point of Brillouin-Wigner perturbation theory, in which $E$ is computed implicitly rather than explicitly.}
+	\begin{equation}\label{FP}
+	  \psi = \psi_0 + \lambda R_0(E_0 )( H_1  -\langle \psi_0 \vert H_1 \psi\rangle )\psi.
+	\end{equation}
+	In a broad sense, perturbation theory consists in finding solution to \eqref{FP} iteratively. There is more than one way to approach this problem.
+
+	\paragraph{RS perturbation theory.---}
+    Conventional RS theory seeks solutions of \eqref{FP} as a power series $\psi_\textrm{RS}=\sum_{l\geq 0}\lambda^l a_l$. Inserting this ansatz into \eqref{FP} and collecting terms of the same order in $\lambda$ gives the well-known recursion relation $a_{l+1}=Q_\textrm{RS}(a_0, \cdots , a_l)$ with
+	\begin{equation}\label{recursion}
+	 Q_\textrm{RS}(a_0, \cdots , a_l)\equiv \lambda R_0(E_0)[H_1  a_{l} - \sum_{s=0}^{l}\langle \psi_0\vert H_1  a_s\rangle a_{l-s}]
+	\end{equation}
+    with initial condition $a_0=\psi_0$. In many cases of physical interest (including all examples below, and others \cite{adamsAlgebraicApproachSimple1994}), the perturbation $H_1$ is block-diagonal in the basis of unperturbed eigenstates, hence \eqref{recursion} is effectively a final-dimensional problem which can be solved at any finite order $k$ using computer algebra \footnote{In particular, to any finite perturbative order $k$, all sums over unperturbed eigenstates are all finite sums.}. (When this condition is not met, the perturbation equations must usually be solved numerically in a finite basis set, \emph{i.e.} perturbation theory becomes a variational approximation.) From these eigenvector coefficients the energy can be computed at any order $k$, either directly as $E^{(k)}_\textrm{RS}=\sum_{l\geq 0}^{k-1}\lambda^l\langle \psi_0\vert H a_l\rangle$, or more efficiently through Wigner's $2n+1$ theorem.
+
+        	    \begin{figure}[t!]
+		\hspace*{-1.1cm}
+		\includegraphics[width = \columnwidth]{anharmonic.pdf}
+		\caption{Convergence of IPT energy iterates $E^{(k)}$ for the ground states of the quartic, sextic and octic anharmonic oscillators, all with $g=100$. Here we used $\alpha = 1/2$ and EN partitioning; $E$ is obtained by exact diagonalization. Note the doubly-logarithmic axes: convergence is slow for these examples.
+		}
+		\label{fig:anharmonic}
+		\end{figure}
+
+
+    \paragraph{Iterative perturbation theory.---}
+
+    An alternative approach, termed here ``iterative perturbation theory'' (IPT), starts from the observation that \eqref{FP} is a fixed-point equation $\psi = F(\psi)$ for the non-linear operator
+    \begin{equation}\label{Fipt}
+        Q_\textrm{IPT}(\psi) \equiv \psi_0 +  \lambda R_0(E_0 )( H_1  -\langle \psi_0 \vert H_1 \psi\rangle )\psi.
+    \end{equation}
+    This suggests that $\psi$ can also be computed dynamically, as the limit of the sequence of iterates $\psi^{(k+1)}_\textrm{IPT} = Q_\textrm{IPT}(\psi^{(k)})$ starting from $\psi^{(0)}=\psi_0$. The corresponding energy given by $E^{(k)}_\textrm{IPT}=\langle \psi_0\vert H\psi^{(k-1)}_\textrm{IPT}\rangle$. This approach is \emph{a priori} more efficient than the RS recursion \eqref{recursion}: IPT is a first-order recurrence relation, whereas \eqref{recursion} involves all previous $a_l$ coefficients.  Moreover, IPT makes it easy to prove convergence results using Banach's fixed point theorem. For instance, we can show that, if $H_1$ is bounded, $\psi^{(k)}$ converges as $k\to\infty$ for any $\vert\lambda\vert < (3 - 2\sqrt{2})/\Vert H_1 \Vert \delta$ where $\delta$ the distance between $E_0 $ and the rest of $H_0 $'s spectrum \cite{kenmoeFastIterativeAlgorithm2021}. The corresponding result in RS theory is ``not at all trivial'' \emph{dixit} Kato \cite{kato2013perturbation}. Finally, IPT is directly related to RS as follows: after $k$ iterations, $\psi^{(k)}_\textrm{IPT}$ contains powers of $\lambda$ with exponents up to $2^k-1$, but low-order terms coincide with RS, \emph{viz.} $\psi^{(k)}_\textrm{IPT} = \psi^{(k)}_\textrm{RS} + \mathcal{O}(\lambda^{k+1})$, as can be easily seen by recursion.
+
+    \paragraph{Relaxation.---}
+
+    Both RS and IPT involve recurrence relations of the form $X_{n+1}=Q(X_n)$. The main purpose of this paper is to direct attention to the fact that the convergence of perturbative calculations is much improved if we use instead the \emph{relaxed} iteration procedure
+    \begin{equation}\label{relaxed}
+        X_{n+1} = \alpha Q(X_n) + (1-\alpha) X_n\ \textrm{for some}\ 0<\alpha<1.
+    \end{equation}
+    Relaxation is a well-known technique in numerical analysis: it simply amounts to choosing a smaller time step in the Euler discretization of a dynamical system---a natural strategy to improve convergence. From the perspective of perturbation theory, \eqref{relaxed} turns out to be  equivalent to a repartitioning of the Hamiltonian into
+    \begin{equation}\label{repart}
+       H = [\alpha^{-1} H_0] + [ H_1 + (1-\alpha^{-1})H_0].
+    \end{equation}
+    Eq. \eqref{repart} with a special choise of $\alpha$ is known in quantum chemistry as ``Feenberg scaling'' \cite{feenberg1958analysis,dietz1993acceleration, schmidt1993feenberg}. Such a repartitioning is also the starting point of order-dependent mappings \cite{seznec1979summation} and of self-consistent expansions \cite{schwartz1992nonlinear}. They key point is that, upon such a repartitioning, neither RS nor IPT give rise to power series of $\lambda$ \footnote{IPT never does: even with $\alpha =1$, $\psi^{(k)}_\textrm{IPT}$ is a polynomial in $\lambda$ with $k$-dependent coefficients.}, but instead to expansions of the form $\psi^{(k)}=\sum_{l=0}^{c(k)}b_{k,l}(\alpha)\lambda ^l$ with $c(k) = k$ for RS theory and $c(k)=2^{k}-1$ for IPT. Abel's lemma does not apply to such expansions: $\psi = \lim_{k\to\infty} \psi^{(k)}$ can admit a singularity at some $\lambda = \lambda_*$, and nevertheless converge outside the disk with radius $\vert \lambda_*\vert$. For an illustration of this fact using a simple two-dimensional example see Supplementary Material I.
+
+
+
+    \paragraph{Epstein-Nesbet partitioning.---} We have noted before that, given $H = F + g I $ where $F$ is a free theory (say a harmonic oscillator or a Fockian) and $g$ a physical coupling constant, setting $H_0 = F$ and $H_1 = gI$ is not necessarily the most judicious choice. Indeed another natural choice, Epstein-Nesbet (EN) partitioning \cite{surjanAppendixStudiesPerturbation2004}, is often preferable. In the basis of eigenvectors of $F$, this is defined by
+    \begin{equation}\label{EN}
+	    H_0=\textrm{diag}(H_{nn})_{n\geq 0} = F + g\, \textrm{diag}(I_{nn})_{n\geq 0}
+	\end{equation}
+    and $H_1 = H-H_0$. Perhaps because it is incompatible with the notion that perturbation theory should provide an expansion in powers of $g$, this choice is rarely used in the physical literature.
+
+    We now proceed to illustrate the virtues of combining EN partitioning with relaxed iteration through several examples. Although both RS and IPT give comparable results, in the following I focus on the latter (omitting subscripts) owing to its simpler structure and greater computational efficiency.
+
+
+    \paragraph{Even anharmonic oscillators.---} Even-order one-dimensional anharmonic oscillor $H = p^2 + x^2 + g x^{2s}$ are commonly cited to illustrate the difficulties encountered in RS theory \cite{simon1982large, Calicetiusefulalgorithmsslowly2007}. In the usual partitioning with $H_0  = p^2 + x^2$ and $\alpha = 1$, the RS coefficients for the ground state energy grow like $(-1)^n((s-1)n)!$ and the corresponding series diverges for any value of $g \neq 0$ due to branch point singularities accumulating at $g=0$ \cite{benderAnharmonicOscillator1969, SimonCouplingconstantanalyticity1970}. For $s = 2, 3$ the RS series for the ground state energy is Padé-summable, but for higher orders it is not; (generalized) Borel summation is however always possible \cite{Calicetiusefulalgorithmsslowly2007}.  It was noted in \cite{surjanConvergenceEnhancementPerturbation2004} that, using \eqref{EN} but no relaxation, the RS series for the quartic oscillator $s=2$ may converge for very small values of $g$. We checked that this is no longer true for $s=3, 4$.
+
+	Relaxed perturbation theory with EN partitioning, on the other hand, always converges. Fig. \ref{fig:quartic} shows IPT energy iterates for the quartic oscillator at increasingly large coupling $g$; Fig. \ref{fig:anharmonic} in turn shows the relative errors for the quartic, sextic and octic oscillators with $g=100$. Without restrictions, we find that $E^{(k)}$ converges to the exact eigenvalue $E$ as $k\to\infty$, albeit increasingly slowly as $s$ or $g$ gets larger. We emphasize that the convergence of $E^{(k)}$ is underpinned by the convergence of the eigenvector $\psi^{(k)}$ itself, as can be checked by computing the residuals $\Vert H\psi^{(k)} -\langle \psi_0,H\psi^{(k)}\rangle \psi^{(k)}\Vert$ (not shown). %By contrast, resummation techniques usually focus on improving the convergence of the eigenvalue $E(g)$, without addressing the construction of the corresponding wavefunction.
+
+
+
+
+	\paragraph{Herbst-Simon Hamiltonian.---} The Herbst-Simon anharmonic oscillator with potential $V(x;g)=2gx-2gx^3+g^2 x^4$ has a purely instantonic positive ground state energy $E\sim e^{-d/g^{2}}$ for some $d>0$. This unusual non-analytic behaviour precludes a meaningful expansion in power of $g$, and shows that the standard RS expansion (identically zero in this case) can sometimes converge to the wrong value. As already noted, successful perturbative calculations of $E$ for g up to $\sqrt{0.3}$ have so far involved educated guesses and sophisticated resummation procedures \cite{ZinnJustinMultiinstantonsexactresults2004, SurzhykovQuantumdotpotentials2006}.
+
+
+	\begin{figure}
+	\hspace*{-1.1cm}
+	\includegraphics[width = \columnwidth]{Herbst-Simon.pdf}
+	\caption{The Herbst-Simon ground state energy vanishes to all orders in $g$, but can be accurately computed using relatex perturbation theory, here IPT with $\alpha = 1/2$ and EN partitioning \eqref{EN}.
+	}
+	\label{fig:HS}
+	\end{figure}
+
+	Using $\textrm{IPT}$ with $\alpha = 1/2$ (again in EN partitioning) we easily compute $E$ for any $g$, to arbitrary accuracy. For instance, to obtain $E(\sqrt{0.3})\simeq 1.11$ to two significant figures (the state of art using the methods of Ref. \cite{SurzhykovQuantumdotpotentials2006}), we only need a dozen iterations of $\textrm{IPT}$. With $k=220$ iterations, we obtain all $13$ figures of the exact result $[E(\sqrt{0.3})-1]/2=5.318357438655\cdot 10^{-2}$ cited in \cite[Table III]{SurzhykovQuantumdotpotentials2006}. Fig. \ref{fig:HS} illustrates the convergence of $E^{(k)}$ to the exact value (indistinguishable from the red curve on this figure), with its non-polynomial behavior near $g=0$.
+
+
+	% \begin{figure}
+	% \hspace*{-1.1cm}
+	% \includegraphics[width = \columnwidth]{continuous-time.pdf}
+	% \caption{Numerical integration of $d\phi_t/dt = F(\phi_t)-\phi_t$ for anharmonic oscillators with $g=10^2$, using the standard partitioning with $H_0=x^2+p^2$ and an implicit BDF scheme. Convergence is fast (exponential) and does not worsen with the exponent $s$ of the potential. Compare with Fig. \ref{fig:anharmonic}.
+	% }
+	% \label{fig:continuous}
+	% \end{figure}
+
+
+
+
+
+	\paragraph{Zeeman problem.---} We close with an example of historical as well as experimental significance, the hydrogen atom in a magnetic field, $H = -\Delta/2 -1/r + g(x^2+y^2)$ with $g=B^2/8$ (in atomic units). To compute Zeeman shifts it is useful to make use of the $SO(4,2)$ dynamical symmetry of the problem \cite{cizekAlgebraicApproachBound1977, adamsAlgebraicApproachSimple1994}. Thus, for the ground state $\psi$ with energy $E=-1/2 +\Delta E$, the Schr\"odinger equation may be reformulated as the generalized eigenvalue problem
+	\begin{equation}\label{zeeman}
+	    (T_3-1+g W)\psi = (\Delta  E)S\psi
+	\end{equation}
+	where $T_3$ is a generators of a $\mathfrak{so}(2,1)$ sub-algebra (with discrete spectrum), $W$ and $S$ can be expressed in terms of the other generators of $\mathfrak{so}(4,2)$ \cite[Chap. 9]{adamsAlgebraicApproachSimple1994}. Using this representation with the partitioning $H_0  = T_3-I$, it is possible to compute the RS coefficients of $\psi$ to large orders \cite{cizekLargeOrderPerturbation1982}. The resulting series diverges for any $g\neq 0$, but Padé approximants provide accurate estimates of $E$ up to $g\simeq 1$. In stronger fields, Borel resummation combined with order dependent mappings \cite{leguillouHydrogenAtomStrong1990} or sequence transformations \cite{cizekNewSummationTechnique2003} give better results. These methods are all rather sophisticated and generally use additional information about the $g\to \infty$ limit, \emph{e.g.} via a scaling of space which maps $g$ to the unit interval \footnote{The RS series for the Zeeman has been called ``one of the most difficult summable divergent series encountered in physics'' \cite{cizekNewSummationTechnique2003}.}.
+
+	 A straightforward generalization of IPT to account for the $S$ matrix on the RHS of \eqref{zeeman} reproduces these results without using \emph{ad hoc} information , and without any limitation on $g$ (other than the slow convergence in very strong fields). For $B=1$ (a strong field of $2\cdot 10^5$ T) we obtain the correct result $E = -0.3312$ with just $k=100$ iterations of $\textrm{IPT}$ ($\alpha = 0.3$). For $B=10$, $k=1000$ iterations give $E^{(k)} = 3.72$, to be compared with $E = 3.25$ obtained in Ref. \cite{cizekNewSummationTechnique2003} using Weniger-type sequence transformations. Using elementary Aitken extrapolation this improves to $E^{(k)'} = 3.35$ \footnote{Aitken extrapolation of a sequence $s_n$ is $s_n'=(s_n s_{n+2}-s_{n+1}^2)/(s_n +s_{n+2}-2s_{n+1})$.}.
+
+\begin{table}[t]
+
+ \begin{tabular}{| c |  c || c  c  c |}
+  \hline
+  Disorder $h$ & IPR & \multicolumn{3}{c|}{Iterations / CPU time ($s$)} \\
+
+ &  & IPT-AA & KS & LOBPCG \\
+ \hline\hline
+ 1 & 0.004 & 396/19.4 & 8/2.1 & 85/4.4 \\
+  \hline
+ 2 & 0.11 & 64/3.2 & 7/1.9 & 65/3.4  \\
+  \hline
+ 5 & 0.68 & 21/1.0 & 7/1.8 & 62/3.3  \\
+ \hline
+ 10 & 0.92 & 14/0.64 & 5/1.3 & 45/2.4  \\
+ \hline
+ 50 & 0.99 & 7/0.30 & 4/1.1 & 32/1.7  \\
+ \hline
+  100 & 0.999 & 5/0.22 & 3/0.93 & 27/1.4  \\
+  \hline
+\end{tabular}
+    \caption{Exact (numerical) diagonalization of the ground state of the random-field Heisenberg spin chain. For disorder strengths $h\geq 3.7$ this system is many-body localized, implying that eigenstates are close to states in the computional basis \cite{serbyn2013local} and display high inverse participation ratio (IPR). We used $L=20$ spins, periodic boundary conditions and set the tolerance to $10^{-10}$. The Hamiltonian matrix was built using \texttt{quimb} \cite{gray2018quimb}, and Krylov-Schur (KS) and LOBPCG calculations were done with \texttt{SLEPc} \cite{hernandez2005slepc}. For LOBPCG we used a trivial preconditioner, which proved more efficient than a diagonal preconditioner in this case. IPT was applied with Anderson acceleration (IPT-AA) with memory $M=10$ \cite{zhang2020globally}. Timings are with a $3.6$ GHz 10-core Intel i9 processor.}
+    \label{table}
+\end{table}
+
+
+
+	\paragraph{IPT as eigensolver.---}
+
+    Like conventional RS theory, IPT is a scheme for computing analytical approximations of perturbed eigenvectors. However, in cases where $H_1$ is not block diagonal or can only be obtained in a finite basis set, as is common in quantum chemistry, the latter can also be used as an efficient numerical eigensolver. Given a  matrix $H$, the simplest numerical implementation of IPT consists in replicating the relaxed perturbative calculations above: set $H_0=\textrm{diag}(H)$, start from a basis vector, say $\psi_0=(1,0,\cdots , 0)$, and iterate $\psi^{(k+1)} = \alpha Q(\psi^{(k)}) + (1-\alpha) \psi^{(k)}$ until a convergence condition is met. However, instead of using a fixed $\alpha$, it is more efficient to use an optimal convex combination of $F(\psi_{k-1})$ and previous iterates. This method, known as Anderson acceleration \cite{walker2011anderson}, constructs the new iterate as
+	\begin{equation}
+	\psi^{(k+1)}=\sum_{m=0}^M\beta_mQ(\psi^{(k-m)}),
+	\end{equation}
+where $M$ is a memory parameter and the positive coefficients $\beta_m$'s are recomputed at each step by minimizing the residual norm.
+
+With this modification, IPT provides an eigensolver that can be remarkably efficient: a python implementation given in Supplementary Material II proves up to $5$x faster that state-of-the-art implementations of the Implicitly Restarted Lanczos and Locally Optimal Block Preconditioned Conjugate Gradient (LOBPCG) algorithms \footnote{IPT can also be applied to non-Hermitian problems, in which case speed-up factors reach $100$ or more \cite{kenmoeFastIterativeAlgorithm2021}.}. (Other recent methods, such as Generalized Davidson or Jacobi-Davidson, were slower in this case.) Table \ref{table} reports the number of iterations and CPU time required to compute the ground state of a random-field Heisenberg spin chain at various disorder strengths $h$, showing significant speed-ups in the many-body localized phase $h\geq 3.7$ (for notation and motivation see e.g. \cite{luitz2015many}). It is important to emphasize, however, that unlike Lanczos and other general-purpose eigenvalue algorithms, IPT has a limited applicability: due to its perturbative nature, the performance of IPT degrades rapidly when off-diagonal elements become large compared to the separation between its diagonal elements. For more details on the numerical aspects of IPT, I refer the reader to Ref.  \cite{kenmoeFastIterativeAlgorithm2021}.
+
+
+	\paragraph{Conclusion.---} ``Relaxed perturbation theory'' is the idea of applying relaxed iteration to compute the eigenvectors of perturbed operators, either using the well-known RS scheme, or, more conveniently, through the application of the non-linear operator $Q_\textrm{IPT}$. Combined with the Epstein-Nesbet partitioning prescription, this technique provides convergent approximations for the ground state wavefunctions (not just energies) of challenging Hamiltonians, including the purely instantonic Herbst-Simon Hamiltonian and the hydrogenic Zeeman problem, up to arbitrarily high field coupling strengths. My interpretation of these results is that ``non-perturbative physics'' is, in fact, squarely within the scope of perturbation theory.
+
+	\medskip
+	       \begin{acknowledgments}
+			It is a pleasure to thank Maxim Kenmoe for stimulating my interest in perturbation theory, Anton Zadorin for a productive collaboration on the mathematical aspects of IPT, and an anonymous referee for constructive comments. Funding for this work was provided by the Alexander von Humboldt Foundation in the framework of the Sofja Kovalevskaja Award endowed by the German Federal Ministry of Education and Research.
+		\end{acknowledgments}
+
+\bibliographystyle{apsrev4-2}
+	%\bibliographystyle{prl_style}
+\bibliography{refs}
+
+
+
+
+\end{document}
