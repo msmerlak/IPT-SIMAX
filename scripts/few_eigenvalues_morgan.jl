@@ -4,8 +4,6 @@ using DrWatson
 using Plots;
 gr(dpi=500, xtickfont="Computer Modern", ytickfont="Computer Modern", guidefontfamily="Computer Modern");
 
-using JLD
-
 include(srcdir("benchmark.jl"))
 
 morgan(N) = spdiagm(0 => 1:N, 1 => fill(0.5, N - 1), -1 => fill(0.5, N - 1))

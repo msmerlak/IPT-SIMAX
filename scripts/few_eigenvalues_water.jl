@@ -1,8 +1,11 @@
+using DrWatson
+@quickactivate
+
 using Plots;
 gr(dpi=500, xtickfont="Computer Modern", ytickfont="Computer Modern", guidefontfamily="Computer Modern");
 
-include("../src/benchmark.jl")
-include("../matrices.jl")
+include(srcdir("benchmark.jl"))
+include(srcdir("matrices.jl"))
 
 
 M = water;

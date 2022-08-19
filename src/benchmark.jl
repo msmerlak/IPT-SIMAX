@@ -1,6 +1,8 @@
 using Random
 using LinearAlgebra, SparseArrays
-using DataFrames, Arrow
+using Arpack, IterativePerturbationTheory
+
+using BenchmarkTools
 
 using PyCall
 
@@ -18,9 +20,7 @@ all_methods = ((:IPT, :IPT_ACX, :ARPACK)..., primme_methods...)
 some_methods = (:IPT, :IPT_ACX, :PRIMME_RQI, :PRIMME_GD, :PRIMME_JDQMR, :PRIMME_LOBPCG_OrthoBasis, :PRIMME_DYNAMIC)
 
 
-using Arpack, IterativePerturbationTheory
 
-using BenchmarkTools
 
 ϵ(errors, tol) = errors == any(isnan, errors) || any(isinf, errors) ? missing : mapslices(res ->
         all(res .≤ tol) ? tol : minimum(res[res.>tol]), errors; dims=2)
