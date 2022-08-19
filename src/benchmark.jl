@@ -1,6 +1,3 @@
-using DrWatson
-@quickactivate
-
 using Random
 using LinearAlgebra, SparseArrays
 using DataFrames, Arrow

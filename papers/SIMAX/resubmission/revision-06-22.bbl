@@ -1,0 +1,124 @@
+\begin{thebibliography}{10}
+
+\bibitem{rayleigh1894}
+J.~W.~S. Rayleigh, {\em {Theory of Sound. I (2nd ed.).}}
+\newblock London McMillan, 1894.
+
+\bibitem{kato1995}
+T.~Kato, {\em {Perturbation Theory for Linear Operators}}.
+\newblock Springer, 1995.
+
+\bibitem{pozar1998}
+D.~Pozar, {\em {Microwave Engineering (2nd edition)}}.
+\newblock Wiley, New York, 1998.
+
+\bibitem{ostlund1996}
+A.~Szabo and N.~S. Ostlund, {\em {Modern Quantum Chemistry: Introduction to
+  Advanced Electronic Structure Theory.}}
+\newblock Dover Publications, 1996.
+
+\bibitem{demmel1997}
+J.~W. Demmel, {\em {Applied Numerical Linear Algebra}}.
+\newblock Society for Industrial and Applied Mathematics, 1997.
+
+\bibitem{Davidson_1975}
+E.~R. Davidson, ``{The iterative calculation of a few of the lowest eigenvalues
+  and corresponding eigenvectors of large real-symmetric matrices},'' {\em
+  Journal of Computational Physics}, vol.~17, pp.~87--94, jan 1975.
+
+\bibitem{Morgan_2009}
+A.~Morgan, {\em {Solving Polynomial Systems Using Continuation for Engineering
+  and Scientific Problems}}.
+\newblock Society for Industrial and Applied Mathematics, jan 2009.
+
+\bibitem{fokkema1998jacobi}
+D.~R. Fokkema, G.~L. Sleijpen, and H.~A. Van~der Vorst, ``Jacobi--davidson
+  style qr and qz algorithms for the reduction of matrix pencils,'' {\em SIAM
+  journal on scientific computing}, vol.~20, no.~1, pp.~94--125, 1998.
+
+\bibitem{sleijpen2000jacobi}
+G.~L. Sleijpen and H.~A. Van~der Vorst, ``A jacobi--davidson iteration method
+  for linear eigenvalue problems,'' {\em SIAM Review}, vol.~42, no.~2,
+  pp.~267--293, 2000.
+
+\bibitem{knyazev2017recent}
+A.~Knyazev, ``Recent implementations, applications, and extensions of the
+  locally optimal block preconditioned conjugate gradient method (lobpcg),''
+  {\em arXiv preprint arXiv:1708.08354}, 2017.
+
+\bibitem{Surj_n_2004}
+P.~R. Surj{\'{a}}n and {\'{A}}.~Szabados, ``{Appendix to
+  {\textquotedblleft}Studies in Perturbation Theory{\textquotedblright}: The
+  Problem of Partitioning},'' in {\em Fundamental World of Quantum Chemistry},
+  pp.~129--185, Springer Netherlands, 2004.
+
+\bibitem{johnson2012}
+R.~A. Horn and C.~R. Johnson, {\em {Matrix Analysis}}.
+\newblock Cambridge University Press, 2012.
+
+\bibitem{May_1976}
+R.~M. May, ``{Simple mathematical models with very complicated dynamics},''
+  {\em Nature}, vol.~261, pp.~459--467, jun 1976.
+
+\bibitem{eyert1996comparative}
+V.~Eyert, ``A comparative study on methods for convergence acceleration of
+  iterative vector sequences,'' {\em Journal of Computational Physics},
+  vol.~124, no.~2, pp.~271--285, 1996.
+
+\bibitem{Walker_2011}
+H.~F. Walker and P.~Ni, ``{Anderson Acceleration for Fixed-Point Iterations},''
+  {\em {SIAM} Journal on Numerical Analysis}, vol.~49, pp.~1715--1735, jan
+  2011.
+
+\bibitem{lepage2021alternating}
+N.~Lepage-Saucier, ``Alternating cyclic extrapolation methods for optimization
+  algorithms,'' {\em arXiv preprint arXiv:2104.04974}, 2021.
+
+\bibitem{stathopoulos2010primme}
+A.~Stathopoulos and J.~R. McCombs, ``Primme: Preconditioned iterative
+  multimethod eigensolver—methods and software description,'' {\em ACM
+  Transactions on Mathematical Software (TOMS)}, vol.~37, no.~2, pp.~1--30,
+  2010.
+
+\bibitem{hernandez2005slepc}
+V.~Hernandez, J.~E. Roman, and V.~Vidal, ``Slepc: A scalable and flexible
+  toolkit for the solution of eigenvalue problems,'' {\em ACM Transactions on
+  Mathematical Software (TOMS)}, vol.~31, no.~3, pp.~351--362, 2005.
+
+\bibitem{Julia-2017}
+J.~Bezanson, A.~Edelman, S.~Karpinski, and V.~B. Shah, ``Julia: A fresh
+  approach to numerical computing,'' {\em SIAM {R}eview}, vol.~59, no.~1,
+  pp.~65--98, 2017.
+
+\bibitem{IPT-code}
+M.~Smerlak, 2022.
+
+\bibitem{paper-code}
+M.~Smerlak, 2022.
+
+\bibitem{PYSCF}
+Q.~Sun, T.~C. Berkelbach, N.~S. Blunt, G.~H. Booth, S.~Guo, Z.~Li, J.~Liu,
+  J.~D. McClain, E.~R. Sayfutyarova, S.~Sharma, S.~Wouters, and G.~K. Chan,
+  ``Pyscf: the python‐based simulations of chemistry framework,'' 2017.
+
+\bibitem{morgan2000preconditioning}
+R.~B. Morgan, ``Preconditioning eigenvalues and some comparison of solvers,''
+  {\em Journal of computational and applied mathematics}, vol.~123, no.~1-2,
+  pp.~101--115, 2000.
+
+\bibitem{c1998}
+R.~B. Lehoucq, D.~C. Sorensen, and C.~Yang, {\em {ARPACK Users Guide: Solution
+  of Large-Scale Eigenvalue Problems with Implicitly Restarted Arnoldi
+  Methods}}.
+\newblock Society for Industrial and Applied Mathematics, 1998.
+
+\bibitem{Lax2007}
+P.~Lax, ``Linear algebra and its applications, john \& sons,'' {\em Inc.,
+  Hoboken, New Jersey}, 2007.
+
+\bibitem{Roth_2010}
+R.~Roth and J.~Langhammer, ``{Pad{\'{e}}-resummed high-order perturbation
+  theory for nuclear structure calculations},'' {\em Physics Letters B},
+  vol.~683, pp.~272--277, jan 2010.
+
+\end{thebibliography}
